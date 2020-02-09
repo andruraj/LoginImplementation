@@ -8,8 +8,15 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import Rootreducer from "./Reducers/Rootreducer";
 import thunk from "redux-thunk";
+import { setUser } from "./Actions/Empactions";
 
-const store = createStore(Rootreducer, applyMiddleware(thunk));
+export const store = createStore(Rootreducer, applyMiddleware(thunk));
+
+//check user logged in
+if (localStorage.user) {
+  const user = localStorage.user;
+  store.dispatch(setUser(user));
+}
 
 ReactDOM.render(
   <Provider store={store}>

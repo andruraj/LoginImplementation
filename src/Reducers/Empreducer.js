@@ -1,30 +1,27 @@
-const initState={
-    cred:'',
-    empdata:''
-}
+const initState = {
+  user: "",
+  empdata: "",
+  auth: false
+};
 
-const Empreducer=(state=initState,action)=>{
+const Empreducer = (state = initState, action) => {
+  switch (action.type) {
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.payload,
+        auth: true
+      };
 
-    switch (action.type){
-        case 'GET_LOGIN_INFO':
-            {
-          
-            return{
-                ...state,
-                cred:action.payload
-            }}
-
-        case 'GET_ALL_EMPLOYEES':
-            {
-               
-                return{
-                    ...state,
-                    empdata:action.payload
-                }
-            }    
-        default:
-      return state;
+    case "GET_ALL_EMPLOYEES": {
+      return {
+        ...state,
+        empdata: action.payload
+      };
     }
-}
+    default:
+      return state;
+  }
+};
 
 export default Empreducer;
